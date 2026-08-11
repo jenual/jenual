@@ -8,13 +8,16 @@
     <script>
       (function () {
         var location = window.location;
-        var path = location.pathname + location.search;
-        var queryIndex = path.indexOf("?");
-        var pathname = queryIndex === -1 ? path : path.slice(0, queryIndex);
-        var query = queryIndex === -1 ? "" : path.slice(queryIndex + 1);
+        var base = "/jenual/";
+        var baseNoSlash = base.replace(/\/$/, "");
+        var pathname = location.pathname;
+        var route = pathname.indexOf(baseNoSlash) === 0
+          ? pathname.slice(baseNoSlash.length) || "/"
+          : pathname;
         location.replace(
-          location.origin + "/?p=" + encodeURIComponent(pathname) +
-          (query ? "&q=" + encodeURIComponent(query) : "") + location.hash
+          location.origin + base + "?p=" + encodeURIComponent(route) +
+          (location.search ? "&q=" + encodeURIComponent(location.search.slice(1)) : "") +
+          location.hash
         );
       })();
     </script>
