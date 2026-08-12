@@ -7,18 +7,17 @@
     <title>페이지 이동 중 — JENUAL</title>
     <script>
       (function () {
-        var location = window.location;
         var base = "/jenual/";
-        var baseNoSlash = base.replace(/\/$/, "");
+        var location = window.location;
         var pathname = location.pathname;
-        var route = pathname.indexOf(baseNoSlash) === 0
-          ? pathname.slice(baseNoSlash.length) || "/"
-          : pathname;
-        location.replace(
-          location.origin + base + "?p=" + encodeURIComponent(route) +
-          (location.search ? "&q=" + encodeURIComponent(location.search.slice(1)) : "") +
-          location.hash
-        );
+        var relativePath = pathname;
+
+        if (base !== "/" && pathname.indexOf(base) === 0) {
+          relativePath = pathname.slice(base.length - 1);
+        }
+
+        var target = location.origin + base + "?p=" + encodeURIComponent(relativePath + location.search) + location.hash;
+        location.replace(target);
       })();
     </script>
   </head>

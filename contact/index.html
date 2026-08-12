@@ -20,7 +20,6 @@
     <link rel="canonical" href="https://jenual.com/contact" />
     <link rel="icon" href="/jenual/favicon.svg" type="image/svg+xml" />
     <link rel="manifest" href="/jenual/manifest.webmanifest" />
-    <link rel="preload" href="/jenual/assets/brand/jenual-wordmark.png" as="image" type="image/png" />
     <title>Contact — JENUAL</title>
     <script id="jenual-structured-data" type="application/ld+json">{"@context":"https://schema.org","@type":"ProfessionalService","name":"JENUAL","url":"https://jenual.com","image":"https://jenual.com/assets/seo/jenual-og.png","email":"hello@jenual.com","telephone":"+821088506623","address":{"@type":"PostalAddress","addressLocality":"Seoul","addressCountry":"KR"},"areaServed":"KR"}</script>
     <script>
@@ -29,13 +28,13 @@
         var path = params.get("p");
         if (!path) return;
         var query = params.get("q");
-        var base = "/jenual/".replace(/\/$/, "");
-        var route = path.charAt(0) === "/" ? path : "/" + path;
-        window.history.replaceState(null, "", base + route + (query ? "?" + query : "") + location.hash);
+        var base = location.hostname.endsWith(".github.io") ? "/jenual" : "";
+        var nextPath = base + (path.startsWith("/") ? path : "/" + path);
+        window.history.replaceState(null, "", nextPath + (query ? "?" + query : "") + location.hash);
       })(window.location);
     </script>
-    <script type="module" crossorigin src="/jenual/assets/index-C9jRViHg.js"></script>
-    <link rel="stylesheet" crossorigin href="/jenual/assets/index-CJ7wwSHF.css">
+    <script type="module" crossorigin src="/jenual/assets/index-Bk9KxzND.js"></script>
+    <link rel="stylesheet" crossorigin href="/jenual/assets/index-_T1xbMIk.css">
   </head>
   <body>
     <div id="root"></div>
